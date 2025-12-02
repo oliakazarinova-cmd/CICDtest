@@ -21,6 +21,15 @@ def add():
         return 'a or b are not numbers'
     return str(a + b)
 
+@app.route('/dec', methods=['GET'] )
+def dec():
+    try:
+        a = float(request.args.get('a'))
+        b = float(request.args.get('b'))
+    except (TypeError, ValueError):
+        return 'a or b are not numbers'
+    return str(a - b)    
+
 @app.route('/api', methods=['GET','POST'])
 def api():
     if request.method == 'GET':
@@ -31,6 +40,8 @@ def api():
 
 
 
+def main():
+    app.run(host='0.0.0.0', port=8080)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    main()
