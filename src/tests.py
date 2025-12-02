@@ -9,7 +9,9 @@ import json
 
 class FlaskAppTests(unittest.TestCase):
 
-
+    def setUp(self):
+        tested_app.app.config['TESTING'] = True
+        self.app = tested_app.app.test_client()
 
     def test_add_success(self):
         r = self.app.get('/add?a=2&b=3')
